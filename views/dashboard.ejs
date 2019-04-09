@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <base href = "/">
+   <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel = "stylesheet" type = "text/css" href = "./stylesheets/style.css">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<style>
+    #intro
+    {
+        height : 350px;
+        padding:0;
+        position:relative;
+        background-size:cover;
+    }
+    #back-image
+    {
+        object-fit:cover;
+        height:100%;
+        width:100%;
+        filter: brightness(50%);
+    }
+    #intro-title
+    {
+        height : 20%;
+        /* width : 400px;   */
+        margin-top : 2%;
+        margin-left : 10px; 
+        position:absolute;
+        top:0;
+        left:0;
+        /* left : 10%; */
+        /* border:1px solid black; */
+        font-family : segoe UI;
+        color : white;
+    }
+    #intro-steps
+    {
+        height : 50%;
+        /* width : 400px;   */
+        margin-top : 80px;
+        position:absolute; 
+        top:0;
+        right:0;
+        /* left : 10%; */
+        /* border:1px solid black; */
+        font-family : segoe UI;
+        color : white;
+    }
+    #show-toggle
+    {
+        color : black;
+        display:none;
+    }
+    #show-button
+    {
+        display:none;
+    }
+    @media only screen and (max-width: 1000px) 
+    {
+        #intro-steps
+        {
+            top : 21%;
+            left : 0;
+        }
+    }
+    @media only screen and (max-width: 840px) 
+    {
+        #hide-toggle
+        {
+            display : none;
+        }
+        #show-button
+        {
+            display : block;
+        }
+        #title
+        {
+            font-size:20px;
+        }
+    }
+    #side-image
+    {
+        height : 90%;
+        width : 300px;  
+        margin-top : 2%;
+        position:absolute;
+        top:0;
+        right:25%;
+    }
+    #list
+    {
+        font-size : 20px;
+    }
+    #grid-container
+    {
+        height: 100%;
+        margin-top: 4px; 
+        color:black;
+        list-style-type:none;
+        padding:0;
+        /* border:1px solid black; */
+    }
+    .grid-items
+    {
+        height: 44%;
+        width: 40%;
+        float: left;
+        background-color : black;
+        margin:5px;
+        opacity : 0.6;
+        color : white;
+        border-radius:3px;
+    }
+    .grid-items-text
+    {
+       margin : 10px;  
+       font-family : Segoe UI;
+    }
+    #show-button
+    {
+        float: right;
+        margin: 15px;
+        background: transparent;
+        border: 0.5px solid white;
+        color:white;
+    }
+    #Dashboard-main
+    {
+        /* border: 1px solid black;  */
+        height : auto;
+    }
+    #create
+    {
+        height : 150px;
+        background-color :#6175a0e6;
+        margin-top : 10px;
+        color:White;
+        font-weight:bold;
+        font-size : 16px;
+    }
+    #resumes
+    {
+        /* background-color:gray; */
+        margin-top : 10px;
+        height:auto;
+        padding-bottom:15px;
+    }
+    .each-resume
+    {
+        background-color: #d8e0d4;
+        height: 50px;
+        border-radius: 3px;
+        box-shadow: 1.5px 1.5px 5px 0px rgb(65, 60, 60);
+    }
+</style>
+<body>
+    <div id = "navbar">
+        <img src = "./images/applogo.png" id = "logo">
+        <div id = "title">RESUME BUILDER</div>
+
+        <div id = "hide-toggle">
+            <button id = "logout"><a href = "/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></button>
+            <div id = "user-name"><i class="fas fa-user-circle"></i><%= user.fname %> <%= user.lname %></div>  
+        </div> 
+
+        <button id = "show-button" onclick = "show_details()"><i class="fa fa-bars"></i></button>
+    </div>
+
+    <div id = "show-toggle">
+        <i class="fas fa-user-circle"></i><%= user.fname %> <%= user.lname %><br>
+        <a href = "/logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+    </div> 
+
+    <div class = "col-xs-12" id = "intro">
+        <img src = "./images/1-.jpg" id = "back-image">
+
+        <div class = "row">
+            <div class = "col-xs-12 col-md-5 col lg-5" id = "intro-title">
+                <h1><b>RESUME BUILDER</b></h1>
+                <h3>Easy and simply online resume builder.</h3>
+            </div>
+
+            <div class = "col-xs-12 col-sm-6 col-md-6 col-lg-6 " id = "intro-steps">
+
+                <ul id = "grid-container">
+                    <li class = "grid-items"><div class = "grid-items-text">STEP 1<br><br>Fill The Forms</div></li>
+                    <li class = "grid-items"><div class = "grid-items-text">STEP 2<br><br>Select a Template</div></li>
+                    <li class = "grid-items"><div class = "grid-items-text">STEP 3<br><br>Preview And Edit</div></li>
+                    <li class = "grid-items"><div class = "grid-items-text">STEP 4<br><br>Download</div></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class = "col-xs-12 col-sm-10 col-sm-offset-1" id = "Dashboard-main">
+        <a href = "/index">
+            <div class = "col-xs-12 col-sm-3" id = "create">
+                <center><br>Create Resume</center>
+                <center><img src = "./images/add2.png" height = "60px" width = "60px" style = "margin:5px;"></center>
+            </div>
+        </a>
+        
+        <div class = "col-xs-12 col-sm-9" id = "resumes">
+            <h4>MY RESUMES</h4><br>
+            <div class = "col xs-12 each-resume">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    var flag=0;
+    function show_details()
+    {
+        if(flag==0)
+        {
+            document.getElementById('show-toggle').style.display = "block";
+            flag=1;
+        }
+        else
+        {
+            document.getElementById('show-toggle').style.display = "none";
+            flag=0;
+        }
+
+    }
+</script>
+</html>
